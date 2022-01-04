@@ -9,15 +9,15 @@ function login(e) {
 
     }
     console.log(loginDetails)
-    axios.post('http://localhost:3000/user/login', loginDetails).then(response => {
-        if (response.status === 200) {
+    axios.post('http://localhost:3000/user/login',loginDetails).then(response => {
+        if(response.status === 200){
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('userDetails', JSON.stringify(response.data.user))
-            window.location.href = "../Home/home.html"
+            window.location.href = "../Home/home.html" 
         } else {
             throw new Error('Failed to login')
         }
     }).catch(err => {
-        document.body.innerHTML += `<div >${err} <div>`;
+        document.body.innerHTML += `<div style="color:red;">${err} <div>`;
     })
 }
