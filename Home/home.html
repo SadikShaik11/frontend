@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>expense tracking website</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>welcome to expense tracker </h1>
+    </header>
+
+    <div class="container">
+        <div class="inputelements">
+            <form onsubmit="addNewExpense(event)">
+                <label for="expenseamount">Choose Expense amount:</label>
+                <input type="number" name="expenseamount" class="expenses" required>
+                <br><br>
+                <label for="description"> Description:</label>
+                <input type="text" name="description" class="expenses" required>
+                <br><br>
+                <label for="category">Choose a category:</label>
+                <select id="category" name="category" class="category">
+                    <option value="fuel"  class="category">fuel</option>
+                    <option value="food" class="category">food</option>
+                    <option value="electricity" class="category">electricity</option>
+                    <option value="Movie" class="category">Movie</option>
+                </select>
+                <br><br>
+                <button class="addexpense">Add Expense</button>
+            </form>
+        </div>
+
+        <div class="displayelements">
+            <h2> list of expenses</h2>
+            <ul id='listOfExpenses'>
+
+            </ul>
+        </div>
+    </div>
+    <script src='./index.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+
+*{
+    box-sizing: border-box;
+}
+
+header{
+display: flex;
+position: fixed;
+top: 30px;
+}
+
+#welcome{
+ color: white;
+border: none;
+padding: 1rem;
+ background-color: #9d4edd;
+ border-radius: 5px;
+}
+
+body{
+min-height: 100vh;
+justify-content: center;
+align-items: center;
+display: flex;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+background-color: #06d6a0;
+}
+.formelement{
+margin-left: 30px;
+}
+.formelements{
+color: white;
+}
+.formcontianer{
+margin-bottom: 300px;background-color:#9d4edd;
+padding: 5rem;
+padding-top: 3rem;
+border-radius: 5px;
+border: 0;
+margin-top: 100px;
+}
+.login{
+    margin-left: 100px;
+}
+#signup{
+    color: white;
+    margin-left: 15px;
+}
+#signup:hover{
+    color: rgb(4, 178, 246);
+}

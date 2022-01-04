@@ -1,0 +1,91 @@
+header {
+    background-color: #264653;
+    justify-content: center;
+    color: #ffd60a;
+}
+h1{
+    font-size: 30px;
+}
+.accountdetails {
+    position: fixed;
+    right: 10px;
+    top: 3px;
+    color: white;
+}
+
+header {
+    display: flex;
+}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 0;
+    justify-content: center;
+    align-items: center;
+    margin: 0%;
+}
+input{
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid white;
+    outline: none;
+}
+
+.container{
+    display: flex;
+    min-height: 90vh
+}
+.displayelements{
+    width: 50%;
+    background-color: #fee440;
+    margin: 0%;
+
+}
+.inputelements{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    background-color: #00bbf9b0;
+}
+form{
+    padding: 6rem;
+}
+label {
+    color: white;
+    font-size: 30px;
+}
+input{
+    color: white;
+    font-size:18px ;
+}
+.addexpense{
+    background-color: black;
+    padding: 0.5rem;
+    border: none;
+    outline: 1px solid #00f5d4;
+    color: white;
+    border-radius: 4px;
+    font-size: medium;
+}
+.addexpense:hover{
+    color:white ;
+    background-color: green;
+}
+h2{
+    text-align: center;
+    color: black;
+    font-weight: 0;
+}
+.category{
+    background: transparent;
+    font-size: medium;
+    outline: none;
+    box-shadow: none;
+    color: white;
+    background-color: black;
+    padding: 3px;
+    border-radius: 3px;
+}
