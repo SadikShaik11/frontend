@@ -143,3 +143,26 @@ $(document).ready(function () {
         $("button").show();
     });
 });
+window.addEventListener('load',(e)=>{
+     const flag =localStorage.getItem('premiummember')
+     const leaderboard = document.getElementsByClassName('leaderboard');
+     if(flag==true){
+         
+         leaderboard.style.display="flex";
+         axios.get('http://localhost:3000/leaderboadrs').then((result) => {
+           
+            for(let x in result){
+                let element =document.createElement('li');
+                li.textcontent=x
+                leaderboard.appendChid(element);
+            }
+
+         }).catch((err) => {
+             console.log(error);
+         });
+
+     }
+     else{
+          leaderboard.style.display="none";
+     }
+})
