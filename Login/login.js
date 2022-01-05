@@ -31,3 +31,14 @@ function login(e) {
         document.body.innerHTML += `<div style="color:red;">${err} <div>`;
     })
 }
+const forgetbutton =document.getElementsByClassName('resetpassword')
+
+forgetbutton.addEventListener('click',(event)=>{
+   const mail= event.target.email
+   axios.post('http://localhost:3000/password/forgotpassword ',mail).then(result=>{
+       
+        alert('password was sent to your mail')
+        window.location.href('./forgetpassword.html');
+    }).catch(err=>console.log(err))
+
+})

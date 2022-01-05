@@ -49,3 +49,13 @@ margin-top: 100px;
 #signup:hover{
     color: rgb(4, 178, 246);
 }
+.forgotpassword{
+    color: white;
+
+}
+.resetpassword{
+    margin-left: 70px;
+}
+.forgetmail{
+    color:white; 
+}
