@@ -1,4 +1,4 @@
-function addNewExpense(e){
+function addNewExpense(e) {
     e.preventDefault();
     const form = new FormData(e.target);
 
@@ -10,22 +10,22 @@ function addNewExpense(e){
     }
     const token = localStorage.getItem('token');
     console.log(expenseDetails)
-    axios.post('http://localhost:3000/user/addexpense',expenseDetails, { headers: {"Authorization" : token} }).then((response) => {
+    axios.post('http://localhost:3000/user/addexpense', expenseDetails, { headers: { "Authorization": token } }).then((response) => {
 
-    if(response.status === 201){
-        addNewExpensetoUI(response.data.expense);
-    } else {
-        throw new Error('Failed To create new expense');
-    }
+        if (response.status === 201) {
+            addNewExpensetoUI(response.data.expense);
+        } else {
+            throw new Error('Failed To create new expense');
+        }
 
     }).catch(err => showError(err))
 
 }
 
-window.addEventListener('load', ()=> {
+window.addEventListener('load', () => {
     const token = localStorage.getItem('token');
-    axios.get('http://localhost:3000/user/getexpenses', { headers: {"Authorization" : token} }).then(response => {
-        if(response.status === 200){
+    axios.get('http://localhost:3000/user/getexpenses', { headers: { "Authorization": token } }).then(response => {
+        if (response.status === 200) {
             response.data.expenses.forEach(expense => {
 
                 addNewExpense(expense);
@@ -36,7 +36,7 @@ window.addEventListener('load', ()=> {
     })
 });
 
-function addNewExpensetoUI(expense){
+function addNewExpensetoUI(expense) {
     const parentElement = document.getElementById('listOfExpenses');
     const expenseElemId = `expense-${expense.id}`;
     parentElement.innerHTML += `
@@ -50,9 +50,9 @@ function addNewExpensetoUI(expense){
 
 function deleteExpense(e, expenseid) {
     const token = localStorage.getItem('token');
-    axios.delete(`http://localhost:3000/user/deleteexpense/${expenseid}`, { headers: {"Authorization" : token} }).then((response) => {
+    axios.delete(`http://localhost:3000/user/deleteexpense/${expenseid}`, { headers: { "Authorization": token } }).then((response) => {
 
-    if(response.status === 204){
+        if (response.status === 204) {
             removeExpensefromUI(expenseid);
         } else {
             throw new Error('Failed to delete');
@@ -62,11 +62,84 @@ function deleteExpense(e, expenseid) {
     }))
 }
 
-function showError(err){
+function showError(err) {
     document.body.innerHTML += `<div style="color:red;"> ${err}</div>`
 }
 
-function removeExpensefromUI(expenseid){
+function removeExpensefromUI(expenseid) {
     const expenseElemId = `expense-${expenseid}`;
     document.getElementById(expenseElemId).remove();
 }
+
+
+var orderId;
+$(document).ready(function () {
+    var settings = {
+        "url": "/create/orderId",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({
+            "amount": "500"
+        }),
+    };
+
+
+    //check out
+    document.getElementById('rzp-button1').onclick = function (e) {
+
+        var options = {
+            "key": rzp_test_kbY8LbSkn1wCGQ, // Enter the Key ID generated from the Dashboard
+            "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Sadik shaik ",
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "order_id": orderId, //This is a sample Order ID. Pass the `id` obtained in the previous step
+            "handler": function (response) {
+                alert(response.razorpay_payment_id);
+                alert(response.razorpay_order_id);
+                alert(response.razorpay_signature)
+
+                var settings = {
+                    "url": "/api/payment/verify",
+                    "method": "POST",
+                    "timeout": 0,
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "data": JSON.stringify({ response }),
+                }
+
+            },
+
+
+            //change theme clor
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        //for failed transaction
+        var rzp1 = new Razorpay(options);
+        rzp1.on('payment.failed', function (response) {
+            alert(response.error.code);
+            alert(response.error.description);
+            alert(response.error.source);
+            alert(response.error.step);
+            alert(response.error.reason);
+            alert(response.error.metadata.order_id);
+            alert(response.error.metadata.payment_id);
+        });
+        e.preventDefault();
+    }
+
+    //creates new orderId everytime
+    $.ajax(settings).done(function (response) {
+
+        orderId = response.orderId;
+        console.log(orderId);
+        $("button").show();
+    });
+});

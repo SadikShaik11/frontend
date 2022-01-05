@@ -2,7 +2,10 @@ header {
     background-color: #264653;
     justify-content: center;
     color: #ffd60a;
+    display: block;
+
 }
+
 h1{
     font-size: 30px;
 }
@@ -88,4 +91,15 @@ h2{
     background-color: black;
     padding: 3px;
     border-radius: 3px;
+}
+#rzp-button1{
+    margin-top: 50px;
+    background-color: #fdcf00;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    
+}
+#rzp-button1:hover{
+    background-color: #fee440;
 }
